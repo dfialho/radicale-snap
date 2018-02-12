@@ -1,0 +1,6 @@
+#!/bin/sh
+
+USERS_FILE=$SNAP_DATA/auth
+
+# Make sure the user files exists
+touch $USERS_FILE
