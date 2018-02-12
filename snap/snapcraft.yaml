@@ -1,0 +1,13 @@
+name: radicale
+version: '2.1.8'
+summary: Unofficial snap for radicale
+description: |
+  Radicale is a lightweight CalDAV and CardDAV solution with support for
+  multiple calendars and address books.
+
+grade: devel
+confinement: devmode
+
+parts:
+  radicale:
+    plugin: nil
