@@ -10,10 +10,16 @@ confinement: devmode
 
 apps:
   radicale:
-    command: radicale --config "" --storage-filesystem-folder=$SNAP_COMMON/storage
+    command: bin/wrapper.sh
 
 parts:
   radicale:
     source: https://github.com/Kozea/Radicale/archive/$SNAPCRAFT_PROJECT_VERSION.tar.gz
     plugin: python
     python-version: python3
+
+  wrapper:
+    plugin: dump
+    source: files/
+    prepare: |
+      chmod +x bin/wrapper.sh
