@@ -3,10 +3,16 @@ set -e
 
 . $SNAP/defs.sh
 
+
+##
+# Authentication
+##
+
 # Make sure the user files exists
 touch $USERS_FILE
 # Prevent other users other than root from reading the users file
 chmod 600 $USERS_FILE
+
 
 ##
 # Logging
@@ -21,4 +27,14 @@ sed -i -e "s%\%(LOGFILE)%$LOG_FILE%g" $LOGGERS_FILE
 # Create the storage directory
 mkdir $STORAGE_DIR/
 
+
+##
+# Set the default port for radicale server
+##
 snapctl set port=5232
+
+
+##
+# HTTPs
+##
+mkdir -m 700 $CERTS_DIR

@@ -2,6 +2,7 @@
 set -e
 
 . $SNAP/defs.sh
+. $SNAP/https.sh
 
 
 # Create git repository to store versions of the user's data
@@ -24,9 +25,22 @@ if [ ! -d .git/ ]; then
 fi
 
 
-radicale --config $CONFIG_FILE 					\
-	--storage-filesystem-folder=$STORAGE_DIR 	\
-	--auth-htpasswd-filename=$USERS_FILE 		\
-	--server-pid=$PID_FILE		 				\
-	--logging-config=$LOGGERS_FILE 				\
-	 --server-hosts=0.0.0.0:$(snapctl get port)	\
+function radicale {
+	$SNAP/bin/radicale --config $CONFIG_FILE 					\
+		--storage-filesystem-folder=$STORAGE_DIR 	\
+		--auth-htpasswd-filename=$USERS_FILE 		\
+		--server-pid=$PID_FILE		 				\
+		--logging-config=$LOGGERS_FILE 				\
+		--server-hosts=0.0.0.0:$(snapctl get port) $@
+}
+
+
+if is_https_enabled; then
+  echo "Using HTTPs" >&2
+  radicale --ssl \
+           --server-certificate=${LIVE_CERT} \
+           --server-key=${LIVE_KEY}
+else
+  echo "Using HTTP" >&2
+  radicale
+fi
