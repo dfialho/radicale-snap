@@ -4,3 +4,9 @@
 
 # Make sure the user files exists
 touch $USERS_FILE
+
+# Create loggers file from template
+cp $SNAP/loggers.template $LOGGERS_FILE
+
+# Set path to log file
+sed -i -e "s%\%(LOGFILE)%$LOG_FILE%g" $LOGGERS_FILE
