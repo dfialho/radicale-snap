@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 ##
 # Script to manage users using the htpasswd tool
