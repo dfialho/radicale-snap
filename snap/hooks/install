@@ -5,6 +5,8 @@ set -e
 
 # Make sure the user files exists
 touch $USERS_FILE
+# Prevent other users other than root from reading the users file
+chmod 600 $USERS_FILE
 
 ##
 # Logging
