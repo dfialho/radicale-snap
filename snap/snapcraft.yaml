@@ -12,6 +12,9 @@ apps:
   radicale:
     command: bin/wrapper.sh
 
+  users:
+    command: bin/users.sh
+
 parts:
   radicale:
     source: https://github.com/Kozea/Radicale/archive/$SNAPCRAFT_PROJECT_VERSION.tar.gz
@@ -26,3 +29,9 @@ parts:
     source: files/
     prepare: |
       chmod +x bin/wrapper.sh
+      chmod +x bin/users.sh
+
+  htpasswd:
+    plugin: nil
+    stage-packages:
+      - apache2-utils
