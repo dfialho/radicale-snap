@@ -6,19 +6,23 @@ description: |
   multiple calendars and address books.
 
 grade: devel
-confinement: devmode
+confinement: strict
 
 apps:
   radicale:
     command: bin/wrapper.sh
     daemon: forking
     restart-condition: always
+    plugs:
+      - network-bind
 
   users:
     command: bin/users.sh
 
   enable-https:
     command: bin/enable-https.sh
+    plugs:
+      - network
 
   disable-https:
     command: bin/disable-https.sh
@@ -28,6 +32,8 @@ apps:
     command: bin/renew-certs.sh
     daemon: simple
     restart-condition: always
+    plugs:
+      - network
 
 parts:
   radicale:
