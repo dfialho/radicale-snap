@@ -7,8 +7,9 @@
 # This script is associated with the 'users' command
 ##
 
-USERS_FILE=$SNAP_DATA/auth
-STORAGE_DIR=$SNAP_COMMON/storage
+# This script requires USERS_FILE, and STORAGE_DIR
+. $SNAP/defs.sh
+
 
 function usage {
   echo "Usage: users COMMAND <username>"

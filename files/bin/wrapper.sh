@@ -1,8 +1,6 @@
 #!/bin/bash
 
-CONFIG_FILE=$SNAP/config.ini
-STORAGE_DIR=$SNAP_COMMON/storage
-USERS_FILE=$SNAP_DATA/auth
+. $SNAP/defs.sh
 
 radicale --config $CONFIG_FILE \
 	--storage-filesystem-folder=$STORAGE_DIR \
