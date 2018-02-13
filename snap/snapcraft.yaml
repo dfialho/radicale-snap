@@ -37,3 +37,8 @@ parts:
     plugin: nil
     stage-packages:
       - apache2-utils
+
+  git:
+    plugin: nil
+    stage-packages:
+      - git

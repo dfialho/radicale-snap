@@ -1,6 +1,8 @@
 #!/bin/bash
+set -e
 
 . $SNAP/defs.sh
+
 
 radicale --config $CONFIG_FILE 					\
 	--storage-filesystem-folder=$STORAGE_DIR 	\
