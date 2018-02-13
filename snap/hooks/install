@@ -18,3 +18,5 @@ sed -i -e "s%\%(LOGFILE)%$LOG_FILE%g" $LOGGERS_FILE
 
 # Create the storage directory
 mkdir $STORAGE_DIR/
+
+snapctl set port=5232
