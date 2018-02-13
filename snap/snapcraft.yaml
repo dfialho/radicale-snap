@@ -11,6 +11,8 @@ confinement: devmode
 apps:
   radicale:
     command: bin/wrapper.sh
+    daemon: forking
+    restart-condition: always
 
   users:
     command: bin/users.sh
