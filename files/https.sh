@@ -19,13 +19,13 @@ function is_https_enabled {
 
 function deactivate_certificates {
 	rm -rf $LIVE_CERTS_DIR
-	snapctl restart radicale
+	snapctl restart radicale-dfialho.radicale
 }
 
 function activate_certificates {
 	local cert_directory=$1
 	ln -s $cert_directory $LIVE_CERTS_DIR
-	snapctl restart radicale
+	snapctl restart radicale-dfialho.radicale
 }
 
 function uses_self_signed {

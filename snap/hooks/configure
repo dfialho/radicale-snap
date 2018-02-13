@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 
-snapctl restart radicale
+snapctl restart radicale-dfialho.radicale

@@ -15,18 +15,18 @@ Using Ubuntu 16.04 or newer type the following commands:
 
 1. Install snapcraft (if not installed already): 
 		
-	sudo snap install snapcraft --classic	
+		sudo snap install snapcraft --classic	
 
 1. Install and initialize LXD. This step is required to perform a 'cleanbuild'
 	
-	sudo snap install LXD
-	sudo lxd init 	# accepting the defaults is fine
+		sudo snap install LXD
+		sudo lxd init 	# accepting the defaults is fine
 
 1. Clone the repository and build the snap
 
-	git clone git@github.com:dfialho/radicale-snap.git
-	cd radicale-snap
-	snapcraft cleanbuild
+		git clone git@github.com:dfialho/radicale-snap.git
+		cd radicale-snap
+		snapcraft cleanbuild
 
 The snap will be built in a clean LXD container and placed in the current working directory. The built snap can be installed using: 
 
