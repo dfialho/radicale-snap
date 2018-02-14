@@ -153,7 +153,7 @@ function handle_self_signed {
 	mkdir -p $SELF_SIGNED_DIR
 
 	output=$(openssl req -newkey rsa:4096 -nodes -keyout $SELF_SIGNED_KEY \
-							-x509 -days 90 -out $SELF_SIGNED_CERT -subj "/O=Radicale" 2>&1)
+			 -x509 -days 90 -out $SELF_SIGNED_CERT)
 
 	if [ $? -ne 0 ]; then
 		echo "error:" >&2
