@@ -13,6 +13,7 @@ apps:
     command: bin/wrapper.sh
     daemon: forking
     restart-condition: always
+    stop-timeout: 20s
     plugs:
       - network-bind
 
@@ -26,7 +27,6 @@ apps:
 
   disable-https:
     command: bin/disable-https.sh
-
 
   renew-certs:
     command: bin/renew-certs.sh
