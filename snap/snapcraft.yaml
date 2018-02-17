@@ -20,21 +20,6 @@ apps:
   users:
     command: bin/users.sh
 
-  enable-https:
-    command: bin/enable-https.sh
-    plugs:
-      - network
-
-  disable-https:
-    command: bin/disable-https.sh
-
-  renew-certs:
-    command: bin/renew-certs.sh
-    daemon: simple
-    restart-condition: always
-    plugs:
-      - network
-
 parts:
   radicale:
     source: https://github.com/Kozea/Radicale/archive/$SNAPCRAFT_PROJECT_VERSION.tar.gz
@@ -50,9 +35,6 @@ parts:
     prepare: |
       chmod +x bin/wrapper.sh
       chmod +x bin/users.sh
-      chmod +x bin/enable-https.sh
-      chmod +x bin/disable-https.sh
-      chmod +x bin/renew-certs.sh
 
   htpasswd:
     plugin: nil
@@ -63,13 +45,3 @@ parts:
     plugin: nil
     stage-packages:
       - git
-
-  certbot:
-    source: https://github.com/certbot/certbot/archive/v0.21.1.tar.gz
-    plugin: python
-    python-version: python2
-    build-packages: 
-      - python-dev
-      - libffi-dev
-      - gcc
-      - libssl-dev
