@@ -35,6 +35,7 @@ parts:
     prepare: |
       chmod +x bin/wrapper.sh
       chmod +x bin/users.sh
+      chmod +x bin/commit.sh
 
   htpasswd:
     plugin: nil
