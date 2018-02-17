@@ -25,6 +25,8 @@ parts:
     source: https://github.com/Kozea/Radicale/archive/$SNAPCRAFT_PROJECT_VERSION.tar.gz
     plugin: python
     python-version: python3
+    build-packages:
+      - python3-dev
     python-packages:
       - passlib
       - bcrypt
