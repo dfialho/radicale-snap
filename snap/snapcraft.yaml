@@ -27,6 +27,7 @@ parts:
     python-version: python3
     build-packages:
       - python3-dev
+      - libffi-dev
     python-packages:
       - passlib
       - bcrypt
