@@ -3,13 +3,13 @@ set -e
 
 
 # File where the port number is specified
-PORT_FILE=$SNAP_DATA/port
+PORT_FILE=${SNAP_DATA}/port
 
 
-old_port=$(cat $PORT_FILE || echo "5232")
+old_port=$(cat ${PORT_FILE} || echo "5232")
 new_port=$(snapctl get port)
 echo "$new_port" > $PORT_FILE
 
-if [ "$new_port" != "$old_port" ]; then
+if [[ "$new_port" != "$old_port" ]]; then
 	snapctl restart radicale-dfialho.radicale
 fi

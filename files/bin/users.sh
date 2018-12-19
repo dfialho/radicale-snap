@@ -25,7 +25,7 @@ function usage {
 
 # Function to list all existing users 
 function users {
-  cut -d: -f1 $USERS_FILE
+  cut -d: -f1 ${USERS_FILE}
 }
 
 # Function to test if a user exists
@@ -34,7 +34,7 @@ function user_exists {
 
   for user in $(users);
   do
-    if [ "$user" = "$existing_user" ]; then
+    if [[ "$user" = "$existing_user" ]]; then
       return 0
     fi
   done
@@ -44,14 +44,14 @@ function user_exists {
 }
 
 function authenticate_user {
-  htpasswd -B -v $USERS_FILE $1
+  htpasswd -B -v ${USERS_FILE} $1
 }
 
 # Command to create a new user
 function create {
   user_to_create=$1
 
-  if user_exists $user_to_create; then
+  if user_exists ${user_to_create}; then
     echo "User '$user_to_create' already exists"
     exit 1
   fi
@@ -59,7 +59,7 @@ function create {
   echo "Lets create a new user with name '$user_to_create'"
   echo "Please provide a password for the new user"
 
-  if htpasswd -B $USERS_FILE $user_to_create; then
+  if htpasswd -B ${USERS_FILE} ${user_to_create}; then
     echo "Successfully created new user '$user_to_create'"
   else
     echo "Failed to create user '$user_to_create'"
@@ -71,7 +71,7 @@ function create {
 function passwd {
   user_to_update=$1
 
-  if ! user_exists $user_to_update; then
+  if ! user_exists ${user_to_update}; then
     echo "User '$user_to_update' does not exist"
     exit 1
   fi
@@ -79,9 +79,9 @@ function passwd {
   echo "Lets change the password of user '$user_to_update'"
   echo "Please provide the current password for user '$user_to_update'"
 
-  if authenticate_user $user_to_update; then
+  if authenticate_user ${user_to_update}; then
 
-    if htpasswd -B $USERS_FILE $user_to_update; then
+    if htpasswd -B ${USERS_FILE} ${user_to_update}; then
       echo "Successfully updated password of user '$user_to_update'"
     else
       echo "Failed to update password for user '$user_to_update'"
@@ -94,7 +94,7 @@ function passwd {
 function delete {
   user_to_delete=$1
 
-  if ! user_exists $user_to_delete; then
+  if ! user_exists ${user_to_delete}; then
     echo "User '$user_to_delete' does not exist"
     exit 1
   fi
@@ -102,14 +102,14 @@ function delete {
   echo "Lets delete user '$user_to_delete'"
   echo "Please provide the password for user '$user_to_delete'"
 
-  if authenticate_user $user_to_delete; then
+  if authenticate_user ${user_to_delete}; then
 
-    if htpasswd -D $USERS_FILE $user_to_delete; then
+    if htpasswd -D ${USERS_FILE} ${user_to_delete}; then
 
       # remove user data
-      if [ -d $STORAGE_DIR/collection-root/$user_to_delete ]; then
+      if [[ -d ${STORAGE_DIR}/collection-root/${user_to_delete} ]]; then
         echo "Deleting user data"
-        rm -rf $STORAGE_DIR/collection-root/$user_to_delete
+        rm -rf ${STORAGE_DIR}/collection-root/${user_to_delete}
       fi
 
       echo "Successfully deleted user '$user_to_delete'"
@@ -126,7 +126,7 @@ function list {
 
   local all_users=$(users)
 
-  if [ -z $all_users ]; then
+  if [[ -z ${all_users} ]]; then
     echo
     echo "There are no users registered yet"
     echo "Use the following command to create a new user: "
@@ -136,7 +136,7 @@ function list {
   fi
 
   echo "USERS"
-  for user in $all_users;
+  for user in ${all_users};
   do
     echo "- $user"
   done
@@ -148,12 +148,12 @@ function main {
   case "$1" in
     create|passwd|delete)
 
-          if [ $(id -u) -ne 0 ]; then
+          if [[ $(id -u) -ne 0 ]]; then
             echo "The '$1' command requires root permissions (try using sudo)"
             exit 1
           fi
 
-          if [ "$#" -ne "2" ]; then
+          if [[ "$#" -ne "2" ]]; then
             usage;
           else
             ${1} ${2}

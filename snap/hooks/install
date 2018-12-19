@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-. $SNAP/defs.sh
+source f${SNAP}/defs.sh
 
 
 ##
@@ -9,9 +9,9 @@ set -e
 ##
 
 # Make sure the user files exists
-touch $USERS_FILE
+touch ${USERS_FILE}
 # Prevent other users other than root from reading the users file
-chmod 600 $USERS_FILE
+chmod 600 ${USERS_FILE}
 
 
 ##
@@ -19,13 +19,13 @@ chmod 600 $USERS_FILE
 ##
 
 # Create loggers file from template
-cp $SNAP/loggers.template $LOGGERS_FILE
+cp ${SNAP}/loggers.template ${LOGGERS_FILE}
 
 # Set path to log file
-sed -i -e "s%\%(LOGFILE)%$LOG_FILE%g" $LOGGERS_FILE
+sed -i -e "s%\%(LOGFILE)%$LOG_FILE%g" ${LOGGERS_FILE}
 
 # Create the storage directory
-mkdir $STORAGE_DIR/
+mkdir ${STORAGE_DIR}/
 
 
 ##
@@ -37,4 +37,4 @@ snapctl set port=5232
 ##
 # HTTPs
 ##
-mkdir -m 700 $CERTS_DIR
+mkdir -m 700 ${CERTS_DIR}
