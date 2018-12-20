@@ -9,7 +9,7 @@ set -e
 ##
 
 # This script requires USERS_FILE, and STORAGE_DIR
-. $SNAP/defs.sh
+. ${SNAP}/defs.sh
 
 
 function usage {
