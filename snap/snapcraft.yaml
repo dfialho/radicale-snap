@@ -12,7 +12,7 @@ confinement: strict
 apps:
   radicale:
     command: bin/wrapper.sh
-    daemon: forking
+    daemon: simple
     restart-condition: always
     stop-timeout: 20s
     plugs:
