@@ -6,7 +6,7 @@ description: |
   multiple calendars and address books.
 architectures: [armhf]
 
-grade: devel
+grade: stable
 confinement: strict
 
 apps:
